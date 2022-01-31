@@ -1,0 +1,143 @@
+Maria del Alba Pacheco Blas
+Tarea 1
+
+Ejercicio 1.
+  i.
+  El codigo correspondiente al programa que se pide en el inciso i, es el archivo ta1ej1i.cpp. 
+  Este programa implementa un caminante aleatorio sencillo en una dimension, sin utilizar vectores aun, y se evalua una condicion booleana
+  con el proposito de evitar utilizar if. El dato que pide es el numero de pasos que quieres dar. La salida la da en bash
+	  $g++ ta1ej1i.cpp -o ta1ej1i
+	  $./ta1ej1i 10       , donde 10 es el numero de pasos que propongo que de
+
+  ii. 
+  Corresponde al archivo ta1ej1ii.cpp. Implementa un caminante aleatorio en una dimension usando vectores, ya que se pide calcular la
+  posicion promedio y el desplazamiento cuadratico promedio.
+  El vector es un vector de dos vectores, por lo que consta de tres indices. EL primer indice indica la dimension.
+  El segundo indice indica el numero de paso, el tercer indice indica el numero de caminante.
+  Se utilizan funciones definidas aparte como drand, que nos da un numero aleatorio entre 0 y 1.
+  La funcion promedio, y la funcion desplazamiento cuadratico.
+  Compila $g++ ta1ej1ii.cpp -o ta1ej1ii
+	  $./ta1ej1ii
+  
+  Genera dos archivos ej1ii.dat y promej1ii.dat.
+    
+    En ej1ii.dat la primera columna corresponde a los pasos
+		  la segunda columna corresponde al numero de caminante
+		  la tercera columna a la posicion 
+    
+    En promej1ii.dat la primera columna corresponde a los pasos
+		      la segunda columna corresponde a la posicion promedio
+			la tercer columna al desplazamiento cuadratico promedio, 
+	    esta promediado sobre el renglon, es decir para todos los caminantes a un tiempo dado
+
+  iii. 
+  Corresponde al archivo ta1ej1iii.cpp. Es lo mismo que el inciso anterior pero en la dimension (d=2). Esto nos genera dos archivos de datos.
+    Compila $g++ ta1ej1iii.cpp -o ta1ej1iii
+	    $./ta1ej1iii
+  En ej1iii.dat la primer columna es el numero de pasos o tiempo
+		  la segunda columna es el caminante
+		  la tercer columna es la posicion en la coordenada x
+		  la cuarta columna es la posicion en la coordenada y
+
+  En promej1iii.dat la primer columna es el tiempo
+		      la segunda columna es la posicion promediada en x para los 1000 caminantes a un cierto tiempo
+		      la tercer columna es la posicion promediada en y para los 1000 caminantes a un cierto tiempo
+		      la cuarta columna es el desplazamiento cuadratico medio
+
+  La grafica "graf1iii.png" muestra las posiciones de todos los caminantes en distintos momentos de tiempo.
+      > set view equal xyz
+     > set view (0,0,1)
+     > splot 'ej1iii.dat' u 3:4:2 w l pal
+
+  iv.
+  Corresponde al archivo ta1ej1iv.cpp. Dimension (d=3).
+      Compila $g++ ta1ej1iv.cpp -o ta1ej1iv
+	      $./ta1ej1iv
+  En ej1iv.dat la primer columna es el numero de pasos o tiempo
+		  la segunda columna es el caminante
+		  la tercer columna es la posicion en la coordenada x
+		  la cuarta columna es la posicion en la coordenada y
+		  la quinta columna es la posicion en la coordenada z
+
+  En promej1iv.dat la primer columna es el tiempo
+		      la segunda columna es la posicion promediada en x para los 1000 caminantes a un cierto tiempo
+		      la tercer columna es la posicion promediada en y para los 1000 caminantes a un cierto tiempo
+		      la cuarta columna es la posicion promediada en z para los 1000 caminantes a un cierto tiempo
+		      la quinta columna es el desplazamiento cuadratico medio
+
+  La grafica "graf1iv.png" muestra las posiciones de todos los caminantes en distintos momentos de tiempo.
+     > set view equal xyz
+     > set view (1,1,1)
+     > splot 'datos.dat' u 3:4:5:2 w l pal
+  v.
+  Las graficas graf1D.png, graf2D.png, graf3D.png muestran el desplazamiento cuadratico medio contra el tiempo.
+    > plot 'promej1.dat' u 1:i w p, x
+  las comparamos con una recta y vemos que se ajustan muy bien. El desplazamiento cuadratico medio crece linealmente contra el tiempo.
+
+Ejercicio 2 y 3.
+
+  Como para el ejercicio 2 hay que implementar un histograma para un arreglo de datos. Preferi que mi arreglo de datos fuera el que me piden
+  en el ejercicio 3, por lo que el ejercicio 2 y 3 son lo mismo.
+  El codigo que implementa un histograma para un caminante en una dimension con 10000 caminantes, es decir, nos da la distribucion de probabilidad
+  de las posiciones de estos caminantes en distintos momentos de tiempo se llama histograma.cpp
+  
+  HISTOGRAMA es una funcion que pide tres entradas
+  1. El vector de posiciones por caminante
+  2. El vector que va a generar el histograma
+  3. El valor minimo de la posicion
+
+  Esta funcion va a ir leyendo los valores y va a ir contando cuantas veces se repite el valor
+ 
+ Compila $g++ histograma.cpp -o histograma
+	  $./histograma
+  
+  Genera un archivo de datos histograma.dat
+  la primer columna corresponde a los pasos
+  la segunda columna corresponde a las frecuencias
+
+  >plot "histograma.dat" w p
+  obtenemos la grafica histo.png que es la distribucion de probabilidad.
+
+Ejercicio 4. 
+Le doy condiciones al caminante para que no se salga de la red, y genero mi vector posicion. Despues calculo el histograma
+  Corresponde al archivo ta1ej4.cpp.
+  Compila $g++ ta1ej4.cpp -o ta1ej4
+	  $./ta1ej4
+  Genera dos archivos promedios.dat y otro.dat
+  
+  En el archivo "promedios.dat" 
+    en la primer columna estan los pasos
+     en la segunda columna el promedio de los tiempos de ida (tiempos de primer pasaje)
+     en la tercer columna el promedio de los tiempos de regreso.
+     en la cuarta columna la desviación estandar de los tiempos de ida.
+     en la quinta columna a desviación estandar de los tiempos de regreso.
+
+  En el archivo otro.dat
+    en la primer columna estan los pasos
+    en la segunda columna estan las frecuencias de primer pasaje y de recurrencia
+
+Para obtener la grafica ej4.png
+> plot 'promedios.dat' u 1:2 w p, '' u 1:3 w p, x, '' u 1:4 w p, '' u 1:5 w p
+   
+el promedio de los tiempos de ida y de regreso dependen linealmente con L, La desviación estandar depnde al cuadrado de L.  
+
+Para obtener el histograma histo4.png
+> plot "otro.dat" w p
+
+Podemos observar que corresponde a una ley de potencias.
+
+Ejercicio 5.
+Este programa genera un caminante aleatorio en una dimension, inicia la caminata en cero y quiero saber cuanto tiempo tarda en cruzar 0 y 
+encuentro el tiempo promedio que tarda en cruzar el cero, esto lo imprime en la pantalla
+
+  Corresponde al archivo ta1ej5.cpp.
+  Compila $g++ ta1ej5.cpp -o ta1ej5
+	  $./ta1ej5
+  imprime en la pantalla el tiempo promedio
+  Genera un archivo ej5.dat
+	la primer columna corresponde al numero de paso
+	la segunda columna correpsonde a la frecuencia
+
+Para obtener la grafica ej5.png
+> plot "ej5.dat" w p
+La distribucion es una distibucion de potencias.
